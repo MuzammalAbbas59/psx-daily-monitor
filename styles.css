@@ -1,0 +1,262 @@
+:root {
+  color-scheme: light;
+  /* Pakistan flag green and white. All text colors pass WCAG AA on white. */
+  --flag: #01411c;
+  --flag-soft: #e6f2ea;
+  --bg: #f4f8f5;
+  --panel: #ffffff;
+  --line: #d9e5dd;
+  --text: #132a1d;
+  --muted: #56675d;
+  --up: #0a7a3a;
+  --down: #c0262d;
+  --warn: #8a5300;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font:
+    14px system-ui,
+    sans-serif;
+}
+main {
+  max-width: 1600px;
+  margin: auto;
+  padding: 24px;
+}
+h1 {
+  font-size: 27px;
+  margin: 0 0 6px;
+  letter-spacing: -0.03em;
+}
+p {
+  margin: 6px 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+header {
+  background: linear-gradient(90deg, #fff 0 14px, var(--flag) 14px);
+  border: 1px solid var(--flag);
+  border-radius: 12px;
+  padding: 16px 18px 14px 30px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.status {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  margin: 16px 0;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+header p {
+  color: #d3e8da;
+}
+header a {
+  color: #fff;
+}
+header .tag {
+  color: #d3e8da;
+}
+.status b {
+  display: block;
+  font-size: 16px;
+}
+.small {
+  font-size: 12px;
+  color: var(--muted);
+}
+.bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+  align-items: center;
+}
+button,
+input,
+select {
+  font: inherit;
+  background: #fff;
+  border: 1px solid #b9cdbf;
+  color: var(--text);
+  border-radius: 6px;
+  padding: 9px 12px;
+}
+button {
+  cursor: pointer;
+  border-color: var(--flag);
+  color: var(--flag);
+  font-weight: 600;
+}
+button:hover {
+  background: var(--flag);
+  color: #fff;
+}
+input:focus,
+select:focus,
+button:focus-visible {
+  outline: 2px solid var(--flag);
+  outline-offset: 1px;
+}
+a {
+  color: var(--flag);
+}
+.wrap {
+  background: var(--panel);
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  max-height: 72vh;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+th,
+td {
+  text-align: right;
+  padding: 10px 11px;
+  border-bottom: 1px solid var(--line);
+}
+th {
+  position: sticky;
+  top: 0;
+  background: var(--flag);
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 1;
+}
+th:first-child,
+td:first-child,
+th:nth-child(2),
+td:nth-child(2) {
+  text-align: left;
+}
+tr:nth-child(even) {
+  background: #f5f9f6;
+}
+tr:hover {
+  background: var(--flag-soft);
+}
+.up {
+  color: var(--up);
+}
+.down {
+  color: var(--down);
+}
+.up,
+.down {
+  font-weight: 600;
+}
+.warn {
+  color: var(--warn);
+}
+.muted {
+  color: var(--muted);
+}
+.tag {
+  font-size: 11px;
+  color: var(--muted);
+}
+.note {
+  font-size: 12px;
+  margin-top: 12px;
+}
+#error {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 700px) {
+  main {
+    padding: 12px;
+  }
+  h1 {
+    font-size: 22px;
+  }
+}
+
+.hot-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--flag);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+}
+.hot-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hot-heading h2 {
+  color: var(--flag);
+  font-size: 19px;
+  margin: 0;
+}
+.hot-panel .wrap {
+  max-height: none;
+  margin-top: 10px;
+}
+.hot-panel th {
+  cursor: default;
+}
+.hot-panel td:first-child,
+.hot-panel th:first-child {
+  text-align: left;
+}
+.hot-panel td:nth-child(2),
+.hot-panel th:nth-child(2) {
+  text-align: right;
+}
+.hot-panel button,
+.dismiss-btn {
+  font-size: 12px;
+  padding: 6px 9px;
+}
+.hot-panel button:hover,
+.dismiss-btn:hover {
+  border-color: var(--flag);
+}
+.hot-panel .empty {
+  text-align: left;
+  color: var(--muted);
+  padding: 16px;
+  white-space: normal;
+}
+.dismissed {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.dismissed button {
+  background: var(--flag-soft);
+}
+.dismissed button:hover {
+  background: var(--flag);
+}
+.hot-note {
+  font-size: 12px;
+}
+.hot-panel .warn {
+  color: var(--warn);
+}
+.action-cell {
+  white-space: nowrap;
+}

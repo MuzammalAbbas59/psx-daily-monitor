@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PSX Live Momentum Board V3</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <h1>PSX Live Momentum Board <span class="tag">V3</span></h1>
+          <p>36 symbols · regular market · Pakistan time · read-only</p>
+        </div>
+        <div>
+          <b id="clock">—</b>
+          <p>
+            <a href="https://psxterminal.com/" target="_blank" rel="noopener"
+              >PSX Terminal</a
+            >
+            ·
+            <a href="https://www.investify.pk/" target="_blank" rel="noopener"
+              >Investify (manual backup)</a
+            >
+          </p>
+        </div>
+      </header>
+      <div class="status">
+        <div>
+          <span class="small">Connection</span><b id="conn">Connecting…</b>
+        </div>
+        <div>
+          <span class="small">Last stream quote received</span
+          ><b id="last">—</b>
+        </div>
+        <div>
+          <span class="small">Symbols received</span><b id="count">0 / 36</b>
+        </div>
+        <div>
+          <span class="small">Market state / observation window</span
+          ><b id="session">—</b>
+        </div>
+      </div>
+      <p id="error" class="warn" role="status">
+        Waiting for provider data. No example prices are displayed.
+      </p>
+      <section class="hot-panel" aria-labelledby="hot-title">
+        <div class="hot-heading">
+          <div>
+            <h2 id="hot-title">Hot stocks · emerging momentum</h2>
+            <p class="hot-note">
+              Top 5 active candidates · ranked by recent positive movement, not
+              daily gain.
+            </p>
+          </div>
+          <div class="bar">
+            <label for="crude">Crude direction</label
+            ><select id="crude">
+              <option value="unknown">Not set</option>
+              <option value="up">Up · exclude cement</option>
+              <option value="down">Down · exclude refinery</option>
+              <option value="flat">Flat · neither excluded</option>
+            </select>
+          </div>
+        </div>
+        <p id="hot-status" class="small" role="status">
+          Waiting for fresh regular-session observations.
+        </p>
+        <div class="wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Now %</th>
+                <th>1m Δ pp</th>
+                <th>3m Δ pp</th>
+                <th>5m Δ pp</th>
+                <th>10m Δ pp</th>
+                <th>Cap room %</th>
+                <th>Volume</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="hot-rows"></tbody>
+          </table>
+        </div>
+        <div class="dismissed" id="dismissed"></div>
+        <p class="hot-note">
+          Momentum watch signals only, not buy recommendations. Requires rising
+          3-minute momentum, nonnegative 1-minute change and positive 5-minute
+          change when available. Known capped stocks, stale quotes, WTL and
+          previously flagged non-compliant RUBY/PASL are omitted from this panel
+          (still visible in the main list unless dismissed). Unknown circuit
+          limits or compliance need manual verification. Crude is a manual
+          setting; no live oil feed. Dismissed names are hidden from both tables
+          until restored or the next Pakistan trading date.
+        </p>
+      </section>
+      <div class="bar">
+        <input
+          id="search"
+          placeholder="Search symbol"
+          aria-label="Search symbol"
+        /><select id="source" aria-label="Source filter">
+          <option value="all">All watchlist</option>
+          <option value="ours">Our research</option>
+          <option value="broker">Broker picks</option>
+          <option value="wtl">WTL only</option></select
+        ><select id="sort" aria-label="Sort by">
+          <option value="pct">Daily gain ↓</option>
+          <option value="d5">5m acceleration ↓</option>
+          <option value="d10">10m acceleration ↓</option>
+          <option value="volume">Volume ↓</option>
+          <option value="symbol">Symbol A–Z</option></select
+        ><button id="reconnect">Reconnect</button
+        ><button id="export">Export observed quotes CSV</button>
+      </div>
+      <div class="wrap">
+        <table>
+          <thead>
+            <tr id="headers"></tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p class="note">
+        5m / 10m / 15m columns are observed daily percentage changes at those
+        earlier times, not percentage returns over those intervals. Acceleration
+        is the difference in percentage points. History builds while this tab is
+        open; missing or disconnected periods remain blank. Quote time is
+        provider-reported, not proof of exchange latency. Opening price and
+        official circuit limits are shown only if actually provided, not
+        estimated. Keep JS Investor as execution reference. Browser sleep,
+        connectivity and provider delays may interrupt updates.
+      </p>
+      <p class="note">
+        The stream starts immediately; observations for momentum begin at 09:20
+        PKT on Mon–Thu and 09:05 on Fri. Holidays and actual session state
+        depend on the provider. No automatic trades. No paid feed or credentials
+        used.
+      </p>
+    </main>
+    <script src="config.js"></script>
+    <script src="storage.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
